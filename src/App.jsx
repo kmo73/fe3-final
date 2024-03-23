@@ -17,12 +17,14 @@ function App() {
       return (
             <>
                   <Navbar/>
+
                   <Routes>
                         <Route exact path={routes.home} element={<Home/>}/>
                         <Route path={routes.contact} element={<Contact/>}/>
                         <Route path={routes.dentist} element={<Detail/>}/>
                         <Route path={routes.favs} element={<Favs/>}/>
                   </Routes>
+
                   <Footer/>
             </>
       );
