@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useReducer, useState} from "react";
+import { createContext, useContext, useEffect, useMemo, useReducer, useState} from "react";
 import axios from "axios";
 import { reducer } from "../utils/reducer.js";
 
@@ -11,8 +11,7 @@ export const ContextProvider = ({ children }) => {
       const [state, dispatch] = useReducer(reducer, initialState);
       const url = 'https://jsonplaceholder.typicode.com/users';
 
-      useEffect(() => {
-            //Llamado a la API 
+      useMemo(() => {
             axios(url)
             .then(res => {dispatch({type: 'GET_LIST', payload: res.data})})
       }, [])
