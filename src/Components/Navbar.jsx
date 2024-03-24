@@ -1,4 +1,6 @@
 import React from 'react'
+import { routes } from '../Components/utils/routes'
+import { Link } from 'react-router-dom'
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
@@ -8,9 +10,9 @@ const Navbar = () => {
     <nav>
       {/* Aqui deberan agregar los liks correspondientes a las rutas definidas */}
       {/* Deberan implementar ademas la logica para cambiar de Theme con el button */}
-      <button><a href="/home">Home</a></button>
-      <button><a href="/contact">Contact</a></button>
-      <button><a href="/favs">Favs</a></button>
+      <Link to={routes.home}><button>Home</button></Link>
+      <Link to={routes.contact}><button>Contact</button></Link>
+      <Link to={routes.favs}><button>Favs</button></Link>
       <button>Change theme</button>
     </nav>
   )

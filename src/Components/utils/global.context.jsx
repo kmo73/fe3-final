@@ -6,25 +6,15 @@ export const initialState = {theme: "", data: []}
 
 export const GlobalContext = createContext();
 
-export const Context = ({ children }) => {
+export const ContextProvider = ({ children }) => {
       //Aqui deberan implementar la logica propia del Context, utilizando el hook useMemo
-
-
       const [state, dispatch] = useReducer(reducer, initialState);
-
       const url = 'https://jsonplaceholder.typicode.com/users';
 
       useEffect(() => {
             //Llamado a la API 
             axios(url)
-                  .then(
-                        res => 
-                        {
-                              dispatch({type: 'GET_LIST', payload: res.data});
-                              console.log( "context" );
-                              console.log( state );
-                        }
-                  ) //res.data.recipes
+            .then(res => {dispatch({type: 'GET_LIST', payload: res.data})})
       }, [])
 
       return (
@@ -34,6 +24,6 @@ export const Context = ({ children }) => {
       );
 };
 
-export default Context
+export default ContextProvider
 
 export const useGlobalContext = () => useContext(GlobalContext);
