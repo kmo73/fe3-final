@@ -1,26 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
+import { useGlobalContext } from '../Components/utils/global.context'
 
-const Card = ({ name, username, id }) => {
+const Card = ({itemProps}) => { // Cambie el orden para que tenga mas logica
+      const { id, name, username } = itemProps;
+      const {state, dispatch} = useGlobalContext();
 
-      const addFav = ()=>{
-            // Aqui iria la logica para agregar la Card en el localStorage
+      const [ isFav, setIsFav ] = useState( false );
+
+      const addFav = (e)=>{
+            e.preventDefault();
+
+            let selectedCard = {
+                  id: id,
+                  name: name,
+                  username: username,
+            };
+            console.log( selectedCard );
+
+            dispatch({type: 'ADD_FAV', payload: selectedCard});
       }
+
+      const delFav = (e)=>{
+            e.preventDefault();
+
+            dispatch({type: 'DEL_FAV', payload: id});
+      }
+
+      console.log( state.favsIndex );
 
       return (
             <div className="card">
                   <a href="">
-                        {/* En cada card deberan mostrar en name - username y el id */}
-
                         <img src="../../public/images/doctor.jpg" alt="" className="docImg"/>
-
                         <h3>{name}</h3>
                         <p>{username}</p>
-                        <p>{id}</p>
                   </a>
                   {/* No debes olvidar que la Card a su vez servira como Link hacia la pagina de detalle */}
 
                   {/* Ademas deberan integrar la logica para guardar cada Card en el localStorage */}
-                  <button onClick={addFav} className="favButton">Add fav</button>
+                  { 
+                        state.favsIndex[id] === 0
+                        ? <button onClick={addFav} className="favButton">Add favorite</button>
+                        : <button onClick={delFav} className="favButton unselectedFav" >Remove Favorite</button>
+                  }
             </div>
       );
 };

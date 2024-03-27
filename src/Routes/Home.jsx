@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+// Comento para suprimir warnings
+// import React, { useEffect } from 'react'
 
 import { useGlobalContext } from '../Components/utils/global.context'
 
@@ -15,11 +16,14 @@ const Home = () => {
 
       const {state} = useGlobalContext();
 
+      console.log( state );
+
       return (
             <div className="" >
                   <h1>Home</h1>
                   <div className='card-grid'>
-                        {state.data.map(item => <Card key={item.id} name={item.name} username={item.username} id={item.id}/> )}
+                        {state.data.map(item => <Card key={item.id} itemProps={item}/> )}
+                        {/* Cambie el orden del pasaje de props para que tuviera mas sentido arrancar pasando el ID */}
                   </div>
             </div>
       )
