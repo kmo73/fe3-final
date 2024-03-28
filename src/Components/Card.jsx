@@ -1,15 +1,33 @@
 import React from "react";
+
+import { useGlobalContext } from '../Components/utils/global.context'
 import { routes } from "./utils/routes";
 import { Link } from 'react-router-dom'
 
-const Card = ({ name, username, id }) => {
+const Card = ({itemProps}) => { // Cambie el orden para que tenga mas logica
+      const { id, name, username } = itemProps;
+      const {state, dispatch} = useGlobalContext();
 
-      const addFav = ()=>{
-            // Aqui iria la logica para agregar la Card en el localStorage
+      const addFav = (e)=>{
+            e.preventDefault();
+
+            let selectedCard = {
+                  id: id,
+                  name: name,
+                  username: username,
+            };
+            console.log( selectedCard );
+
+            dispatch({type: 'ADD_FAV', payload: selectedCard});
       }
 
-      
+      const delFav = (e)=>{
+            e.preventDefault();
 
+            dispatch({type: 'DEL_FAV', payload: id});
+      }
+
+      console.log( state.favsIndex );
       return (
             <div className="card">
                   <Link to={'/dentist/' + id}> 
@@ -19,8 +37,14 @@ const Card = ({ name, username, id }) => {
                         <p>{username}</p>
                         <p>{id}</p>
                   </Link>
+                  {/* No debes olvidar que la Card a su vez servira como Link hacia la pagina de detalle */}
+
                   {/* Ademas deberan integrar la logica para guardar cada Card en el localStorage */}
-                  <button onClick={addFav} className="favButton">Add fav</button>
+                  { 
+                        state.favsIndex[id] === 0
+                        ? <button onClick={addFav} className="favButton">Add favorite</button>
+                        : <button onClick={delFav} className="favButton unselectedFav" >Remove Favorite</button>
+                  }
             </div>
       );
 };

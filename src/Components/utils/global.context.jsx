@@ -1,8 +1,12 @@
-import { createContext, useContext, useEffect, useMemo, useReducer, useState} from "react";
+// Hola companiero de batalla Camilo, cambio esto para suprimir los warnings (saque del import las func. que no se usaban. Deje debajo la anterior)
+import { createContext, useContext, useEffect, useMemo, useReducer } from "react";
+// import { createContext, useContext, useEffect, useMemo, useReducer, useState} from "react";
 import axios from "axios";
 import { reducer } from "../utils/reducer.js";
 
-export const initialState = {theme: "", data: [], dentist: {}}
+export const initialState = {theme: "", data: [], favsIndex: [], dentist: {}};
+( localStorage.getItem('favs') === "[]") && localStorage.setItem( "favs", "[]" );
+
 
 export const GlobalContext = createContext();
 
@@ -11,11 +15,21 @@ export const ContextProvider = ({ children }) => {
       const [state, dispatch] = useReducer(reducer, initialState);
       const url = 'https://jsonplaceholder.typicode.com/users';
 
-      useEffect(() => {
-            axios(url)
-            .then(res => {dispatch({type: 'GET_LIST', payload: res.data})})
-      }, [])
+      // useMemo(() => {
+      //       axios(url)
+      //             .then(res => {dispatch({type: 'GET_LIST', payload: res.data})})
+      // }, []);
 
+      useEffect(
+            () => {
+                  axios(url)
+                  .then(res => {dispatch({type: 'GET_LIST', payload: res.data})});
+                  // Agregar:
+                  // .catch()
+            },
+            []
+      );
+      console.log( "Context >:()" );
       return (
             <GlobalContext.Provider value={{state, dispatch}}>
                   {children}
@@ -23,6 +37,6 @@ export const ContextProvider = ({ children }) => {
       );
 };
 
-export default ContextProvider
+export default ContextProvider;
 
 export const useGlobalContext = () => useContext(GlobalContext);
