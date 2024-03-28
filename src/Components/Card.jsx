@@ -8,6 +8,20 @@ const Card = ({itemProps}) => { // Cambie el orden para que tenga mas logica
       const { id, name, username } = itemProps;
       const {state, dispatch} = useGlobalContext();
 
+      let favsList = JSON.parse( localStorage.getItem( "favs" ) );
+      // Print jsonObject array
+      // console.log( favsList );
+
+      let i = 0, found = false;
+
+      while ( found === false && i < favsList.length && favsList.length > 0) {
+            // console.log( favsList[i] );
+            if( id === favsList[i].id ){
+                  found = true;
+            }
+            i++
+      }
+
       const addFav = (e)=>{
             e.preventDefault();
 
@@ -16,7 +30,7 @@ const Card = ({itemProps}) => { // Cambie el orden para que tenga mas logica
                   name: name,
                   username: username,
             };
-            console.log( selectedCard );
+            // console.log( selectedCard );
 
             dispatch({type: 'ADD_FAV', payload: selectedCard});
       }
@@ -27,7 +41,6 @@ const Card = ({itemProps}) => { // Cambie el orden para que tenga mas logica
             dispatch({type: 'DEL_FAV', payload: id});
       }
 
-      console.log( state.favsIndex );
       return (
             <div className="card">
                   <Link to={'/dentist/' + id}> 
@@ -41,7 +54,7 @@ const Card = ({itemProps}) => { // Cambie el orden para que tenga mas logica
 
                   {/* Ademas deberan integrar la logica para guardar cada Card en el localStorage */}
                   { 
-                        state.favsIndex[id] === 0
+                        !found // Es favorito?
                         ? <button onClick={addFav} className="favButton">Add favorite</button>
                         : <button onClick={delFav} className="favButton unselectedFav" >Remove Favorite</button>
                   }

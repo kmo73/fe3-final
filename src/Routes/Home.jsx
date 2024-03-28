@@ -22,17 +22,33 @@ const Home = () => {
             }, 1000);
       }, [])
             //Tengo que usar un estado para recibir data?
+      //
 
-      console.log( state );
+      let bodyRender;
+
+      console.log( state.error );
+      
+      // if( state.error === "" ){
+      //       bodyRender = <div className='card-grid'>
+      //             {data.map(item => <Card key={item.id} itemProps={item}/> )}
+      //       </div>;
+      // } else {
+      //       bodyRender = <h3>{state.error}</h3>;
+      // }
 
       return (
+            
             <div className="" >
                   <h1>Home</h1>
-                  { Loading  ? <p>Loading...</p> :
-                  <div className='card-grid'>
-                        {data.map(item => <Card key={item.id} itemProps={item}/> )}
-                        {/* Cambie el orden del pasaje de props para que tuviera mas sentido arrancar pasando el ID */}
-                  </div>}
+                  {
+                        state.error === "" && (
+                                    <div className='card-grid'>
+                                          {data.map(item => <Card key={item.id} itemProps={item}/> )}
+                                    </div>
+                        )
+                  }
+                   
+                  { state.error !== "" && (<h3>{state.error}</h3>)
             </div>
       )
 

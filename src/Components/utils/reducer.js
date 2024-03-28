@@ -6,7 +6,7 @@ export const reducer = (state, action) => {
                   // Array booleano de favoritos ( del tamanio de elementos retornados por la api )
                   const initFavsIndex = new Array(action.payload.length).fill(0);
                   
-                  return {...state, data: action.payload, favsIndex: initFavsIndex}
+                  return {...state, data: action.payload}
                   // case 'GET_RECIPE':
                   //       return {...state, recipeSelected: action.payload}
             case 'ADD_FAV':
@@ -19,16 +19,16 @@ export const reducer = (state, action) => {
 
                   jsonObject.push( action.payload );
                   // Print array
-                  console.log( jsonObject );
+                  // console.log( jsonObject );
 
                   localStorage.setItem( "favs", JSON.stringify( jsonObject ) );
                   // Print Local Storage
-                  console.log( localStorage.getItem( "favs" ) );
+                  // console.log( localStorage.getItem( "favs" ) );
 
-                  const actFavsIndex = state.favsIndex
-                  actFavsIndex[action.payload.id] = 1;
+                  // const actFavsIndex = state.favsIndex
+                  // actFavsIndex[action.payload.id] = 1;
                   
-                  return { ...state, favsIndex: actFavsIndex };
+                  return { ...state};
 
             case 'DEL_FAV':
                   // Print Local Storage
@@ -48,7 +48,6 @@ export const reducer = (state, action) => {
                         i++
                   }
 
-                  console.log( "objetito:" + jsonObject2[toDelete].id + jsonObject2[toDelete].name );
 
                   // Elimino del array el elemento de la posicion encontrada (toDelete)
                   jsonObject2.splice( toDelete, 1 );
@@ -56,12 +55,21 @@ export const reducer = (state, action) => {
                   // Guardo nuevamente el array en localStorage
                   localStorage.setItem( "favs", JSON.stringify( jsonObject2 ) );
 
-                  const actFavsIndexDel = state.favsIndex;
-                  actFavsIndexDel[action.payload] = 0;
+                  // const actFavsIndexDel = state.favsIndex;
+                  // actFavsIndexDel[action.payload] = 0;
                   
-                  return { ...state, favsIndex: actFavsIndexDel };
+                  return { ...state, };
                   
             case 'GET_DENTIST':
                   return {...state, dentist: action.payload}     
+
+            case 'GET_ERROR':
+                  let errorMsg;
+                  switch( action.payload ){
+                        case "API_LOAD_ERROR":
+                              errorMsg = "Ups! Hubo un error externo al cargar el listado de Dentistas.";
+                  };
+
+                  return {...state, error: errorMsg};     
       }
 }

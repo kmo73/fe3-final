@@ -4,9 +4,9 @@ import { createContext, useContext, useEffect, useMemo, useReducer } from "react
 import axios from "axios";
 import { reducer } from "../utils/reducer.js";
 
-export const initialState = {theme: "", data: [], favsIndex: [], dentist: {}};
-( localStorage.getItem('favs') === "[]") && localStorage.setItem( "favs", "[]" );
-
+export const initialState = {theme: "", data: [], dentist: {}, error: ""};
+( localStorage.getItem('favs') === null ) && localStorage.setItem( "favs", "[]" );
+// localStorage.setItem( "favs", "[]" );
 
 export const GlobalContext = createContext();
 
@@ -23,13 +23,13 @@ export const ContextProvider = ({ children }) => {
       useEffect(
             () => {
                   axios(url)
-                  .then(res => {dispatch({type: 'GET_LIST', payload: res.data})});
+                  .then(res => {dispatch({type: 'GET_LIST', payload: res.data})})
                   // Agregar:
-                  // .catch()
+                  .catch( dispatch( {type: 'GET_ERROR', payload: "API_LOAD_ERROR"} ) );
             },
             []
       );
-      console.log( "Context >:()" );
+
       return (
             <GlobalContext.Provider value={{state, dispatch}}>
                   {children}
