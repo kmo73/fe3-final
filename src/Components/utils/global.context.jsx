@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useReducer, useState} fr
 import axios from "axios";
 import { reducer } from "../utils/reducer.js";
 
-export const initialState = {theme: "", data: []}
+export const initialState = {theme: "", data: [], dentist: {}}
 
 export const GlobalContext = createContext();
 
@@ -11,7 +11,7 @@ export const ContextProvider = ({ children }) => {
       const [state, dispatch] = useReducer(reducer, initialState);
       const url = 'https://jsonplaceholder.typicode.com/users';
 
-      useMemo(() => {
+      useEffect(() => {
             axios(url)
             .then(res => {dispatch({type: 'GET_LIST', payload: res.data})})
       }, [])
