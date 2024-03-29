@@ -24,31 +24,21 @@ const Home = () => {
             //Tengo que usar un estado para recibir data?
       //
 
-      let bodyRender;
-
       console.log( state.error );
-      
-      // if( state.error === "" ){
-      //       bodyRender = <div className='card-grid'>
-      //             {data.map(item => <Card key={item.id} itemProps={item}/> )}
-      //       </div>;
-      // } else {
-      //       bodyRender = <h3>{state.error}</h3>;
-      // }
 
+      if( state.error === "" ){
+            return (
+                  <div className="" >
+                        <h1>Home</h1>
+                        <div className='card-grid'>
+                              {data.map(item => <Card key={item.id} itemProps={item}/> )}
+                        </div>
+                  </div>
+            )
+      }
       return (
-            
             <div className="" >
-                  <h1>Home</h1>
-                  {
-                        state.error === "" && (
-                                    <div className='card-grid'>
-                                          {data.map(item => <Card key={item.id} itemProps={item}/> )}
-                                    </div>
-                        )
-                  }
-                   
-                  { state.error !== "" && (<h3>{state.error}</h3>)
+                  <h3>{state.error}</h3>
             </div>
       )
 

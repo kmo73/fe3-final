@@ -24,8 +24,9 @@ export const ContextProvider = ({ children }) => {
             () => {
                   axios(url)
                   .then(res => {dispatch({type: 'GET_LIST', payload: res.data})})
-                  // Agregar:
-                  .catch( dispatch( {type: 'GET_ERROR', payload: "API_LOAD_ERROR"} ) );
+                  .catch( (err) => {
+                        dispatch( {type: 'GET_ERROR', payload: "API_LOAD_ERROR"} ) 
+                  });
             },
             []
       );
