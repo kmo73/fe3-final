@@ -27,12 +27,6 @@ const Detail = () => {
       <h3>Mail: {dentist.email}</h3>
       <h4>Phone: {dentist.phone}</h4>
       <h4>Website: {dentist.website}</h4>
-      {/* dentist !== '' &&
-      <>
-        <h4>Address: {dentist.address.street}, {dentist.address.suite}</h4>
-        <h4>City: {dentist.address.city}</h4>
-      </> */}
-      <button>Add fav</button>
       <button onClick={() => navigate(-1)}>Back</button>
     </div>
   )

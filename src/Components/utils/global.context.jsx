@@ -1,10 +1,9 @@
 // Hola companiero de batalla Camilo, cambio esto para suprimir los warnings (saque del import las func. que no se usaban. Deje debajo la anterior)
-import { createContext, useContext, useEffect, useMemo, useReducer } from "react";
-// import { createContext, useContext, useEffect, useMemo, useReducer, useState} from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import axios from "axios";
 import { reducer } from "../utils/reducer.js";
 
-export const initialState = {theme: "", data: [], favsIndex: [], dentist: {}};
+export const initialState = {theme: "light", data: [], favsIndex: [], dentist: {}};
 ( localStorage.getItem('favs') === "[]") && localStorage.setItem( "favs", "[]" );
 
 

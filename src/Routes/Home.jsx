@@ -21,12 +21,11 @@ const Home = () => {
                   setLoading(false)
             }, 1000);
       }, [])
-            //Tengo que usar un estado para recibir data?
 
       console.log( state );
 
       return (
-            <div className="" >
+            <div className="home" >
                   <h1>Home</h1>
                   { Loading  ? <p>Loading...</p> :
                   <div className='card-grid'>

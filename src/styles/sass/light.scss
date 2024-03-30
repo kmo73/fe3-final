@@ -1,0 +1,13 @@
+
+.light {
+    background-color: rgb(230, 214, 195);
+    color: black;
+
+    & button{
+        background-color: rgb(232, 249, 250);
+        color: black;
+        &:hover{
+            border: black solid;
+        }
+    }
+}

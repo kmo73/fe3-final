@@ -1,0 +1,5 @@
+@import './sass/light.scss';
+@import './sass/dark.scss';
+@import './sass/general.scss';
+@import './sass/form.scss';
+@import './sass/nav.scss'

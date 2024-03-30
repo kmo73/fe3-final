@@ -1,8 +1,8 @@
 import React from "react";
-
 import { useGlobalContext } from '../Components/utils/global.context'
 import { routes } from "./utils/routes";
 import { Link } from 'react-router-dom'
+import style from '../styles/styles.module.css'
 
 const Card = ({itemProps}) => { // Cambie el orden para que tenga mas logica
       const { id, name, username } = itemProps;
@@ -32,18 +32,17 @@ const Card = ({itemProps}) => { // Cambie el orden para que tenga mas logica
             <div className="card">
                   <Link to={'/dentist/' + id}> 
                         {/* En cada card deberan mostrar en name - username y el id */}
-                        <img src="../../public/images/doctor.jpg" alt="" className="docImg"/>
-                        <h3>{name}</h3>
+                        <img src="../../public/images/doct  or.jpg" alt="" className="docImg"/>
+                        <h3 className={style.name}>{name}</h3>
                         <p>{username}</p>
-                        <p>{id}</p>
                   </Link>
                   {/* No debes olvidar que la Card a su vez servira como Link hacia la pagina de detalle */}
 
                   {/* Ademas deberan integrar la logica para guardar cada Card en el localStorage */}
                   { 
                         state.favsIndex[id] === 0
-                        ? <button onClick={addFav} className="favButton">Add favorite</button>
-                        : <button onClick={delFav} className="favButton unselectedFav" >Remove Favorite</button>
+                        ? <button onClick={addFav} className="favButton">Add fav</button>
+                        : <button onClick={delFav} className="favButton unselectedFav" >Remove fav</button>
                   }
             </div>
       );

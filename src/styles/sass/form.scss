@@ -1,0 +1,41 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 75vh;
+}
+
+form {
+    align-items: center;
+    width: 30rem;
+    height: auto;
+
+    & label, input {
+        margin: .2rem;
+        width: 20rem;
+        border-radius: .4rem;
+        border-color: rgb(254, 248, 248);
+    }
+     & button {
+        margin: 2rem;
+        width: 10rem;
+        font-weight: 700;
+        border-radius: .5rem;
+        border-color: rgb(254, 248, 248);
+        cursor: pointer;
+     }
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & h4 {
+        margin-top: 2rem;
+    }
+}
+
+.error {
+    color: red;
+}

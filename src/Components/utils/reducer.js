@@ -60,8 +60,11 @@ export const reducer = (state, action) => {
                   actFavsIndexDel[action.payload] = 0;
                   
                   return { ...state, favsIndex: actFavsIndexDel };
-                  
+
             case 'GET_DENTIST':
-                  return {...state, dentist: action.payload}     
+                  return {...state, dentist: action.payload}  
+            
+            case 'TOGGLE_THEME':
+                  return {...state, theme: action.payload}
       }
 }

@@ -1,0 +1,21 @@
+.dark{
+    background-color: rgb(23, 24, 42);
+    color: white;
+    
+    & button{
+        background-color: rgb(0, 0, 0);
+        color: white;
+        &:hover{
+            border: white solid;
+        }
+    }
+
+    & p, h3{
+        color: white;
+    }
+    & footer {
+        & img {
+            color: invert($color: #ffffff);
+        }
+    }
+} 

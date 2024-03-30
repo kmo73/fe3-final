@@ -1,0 +1,20 @@
+button{
+    border-radius: .5rem;
+    width: 5rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+    &:active{
+        transform: scale(.9);
+    }
+}
+
+.name{
+    font-size: small;
+    font-weight: 800;
+}
+
+p{
+    font-size: small;
+}
+

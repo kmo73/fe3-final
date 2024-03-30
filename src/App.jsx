@@ -4,15 +4,19 @@ import Home from './Routes/Home';
 import Contact from './Routes/Contact';
 import Detail from './Routes/Detail';
 import Favs from './Routes/Favs';
-import React, { useEffect, useState } from 'react';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
+import style from './styles/styles.module.css'
+import { useGlobalContext } from './Components/utils/global.context';
 
 
 function App() {
+      const {state} = useGlobalContext()
+      const {theme} = state
+      // style.dark o light
 
-      return (
-            <>
+      return ( 
+            <div className={style[theme]}>
                   <Navbar/>
                   <Routes>
                         <Route exact path={routes.home} element={<Home/>}/>
@@ -21,7 +25,7 @@ function App() {
                         <Route path={routes.favs} element={<Favs/>}/>
                   </Routes>
                   <Footer/>
-            </>
+            </div>
       );
 }
 

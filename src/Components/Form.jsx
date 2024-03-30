@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import style from '../styles/styles.module.css'
 
 
 const Form = () => {
@@ -26,15 +27,15 @@ const Form = () => {
   
 
   return (
-    <div>
+    <div className={style.formContainer}>
       <form onSubmit={handlerForm}>
-        <label>Name</label>
+        <label>Name:</label>
         <input type="text" onBlur={(e) => setPatient({...patient, name: e.target.value})} />
-        <label>Email</label>
+        <label>Email:</label>
         <input type="text" onBlur={(e) => setPatient({...patient, email: e.target.value})}/>
         <button>SEND</button>
       </form>
-      {error && <h4>Please verify your info and try again</h4>}
+      {error && <h4 className={style.error}>Please verify your info and try again</h4>}
       {ok && <h4>Thank you {name}!, we will contact you as soon as posible via email</h4>}
     </div>
   );
