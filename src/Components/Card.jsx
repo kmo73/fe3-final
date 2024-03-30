@@ -45,7 +45,7 @@ const Card = ({itemProps}) => { // Cambie el orden para que tenga mas logica
             <div className="card">
                   <Link to={'/dentist/' + id}> 
                         {/* En cada card deberan mostrar en name - username y el id */}
-                        <img src="public/images/doctor.jpg" alt="" className="docImg"/>
+                        <img src="../../public/images/doctor.JPG" alt="" className="docImg"/>
                         <h3 className={style.name}>{name}</h3>
                         <p>{username}</p>
                   </Link>
