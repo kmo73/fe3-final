@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useGlobalContext } from '../Components/utils/global.context'
 import axios from "axios"
+import imgDoc from '../../public/images/doctor.jpg'
 
 
 
@@ -23,7 +24,7 @@ const Detail = () => {
   return (
     <div className='cardDetail'>
       <h1>{dentist.name}</h1> 
-      <img src="../../public/images/doctor.jpg" className='docImg'/>
+      <img src={imgDoc} className='docImg'/>
       <h3>Mail: {dentist.email}</h3>
       <h4>Phone: {dentist.phone}</h4>
       <h4>Website: {dentist.website}</h4>
