@@ -1,11 +1,11 @@
 import React from 'react'
-import style from '../styles/styles.module.css'
+import imgLogo from '../../public/images/DH.png'
 
 const Footer = () => {
   return (
     <footer>
         <p>Powered by</p>
-        <img className='dh' src="/images/DH.PNG" alt='DH-logo' />
+        <img className='dh' src={imgLogo} alt='DH-logo' />
     </footer>
   )
 }

@@ -3,6 +3,7 @@ import { useGlobalContext } from '../Components/utils/global.context'
 import { routes } from "./utils/routes";
 import { Link } from 'react-router-dom'
 import style from '../styles/styles.module.css'
+import imgDoc from '../../public/images/doctor.jpg'
 
 const Card = ({itemProps}) => { // Cambie el orden para que tenga mas logica
       const { id, name, username } = itemProps;
@@ -45,7 +46,7 @@ const Card = ({itemProps}) => { // Cambie el orden para que tenga mas logica
             <div className="card">
                   <Link to={'/dentist/' + id}> 
                         {/* En cada card deberan mostrar en name - username y el id */}
-                        <img src="/images/doctor.JPG" alt="" className="docImg"/>
+                        <img src={imgDoc} alt="" className="docImg"/>
                         <h3 className={style.name}>{name}</h3>
                         <p>{username}</p>
                   </Link>
